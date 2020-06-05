@@ -72,6 +72,8 @@ $payload  = json_encode([
     ],
     "group" => ""
   ],
+  "courseid" => $courseid,
+  "groupid" => "",
   "aud" => "jitsi",
   "iss" => $CFG->jitsi_app_id,
   "sub" => $CFG->jitsi_domain,

@@ -1,3 +1,24 @@
+# FORK
+
+*EN*
+
+Fork of the Moodle integration plugin with Jitsi, aims to generate a list of students presence in distance courses, this fork changes the JWT payload to include the course id, group id and student email.
+
+*PT-BR*
+
+Fork do plugin de integração do Moodle com o Jitsi, tem como objetivo gerar uma lista de presença dos alunos em cursos a distância, este fork altera o payload JWT para incluir o id de curso, id de turma 
+e email do aluno.
+
+
+[*udima-university/moodle-mod_jitsi - Upstream - Github*](https://github.com/udima-university/moodle-mod_jitsi)
+
+## Todo
+
+- [ ] Code review
+- [ ] Tests
+- [ ] Internationalization
+- [ ] Pull request upstream
+
 # Jitsi-Meet moodle plugin
 This module allows creating **jitsi-meet videoconference** sessions fully integrated in Moodle. These videoconferences will use your Moodle username by displaying your username and avatar in videoconferences.
 

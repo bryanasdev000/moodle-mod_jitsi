@@ -37,6 +37,8 @@ $session = required_param('ses', PARAM_TEXT);
 $sessionnorm = str_replace(array(' ', ':', '"'), '', $session);
 $avatar = required_param('avatar', PARAM_TEXT);
 $teacher = required_param('t', PARAM_BOOL);
+$groupid = required_param('groupid', PARAM_TEXT);
+$email = required_param('email', PARAM_TEXT);
 require_login($courseid);
 
 $PAGE->set_title($session);
@@ -73,7 +75,8 @@ $payload  = json_encode([
     "group" => ""
   ],
   "courseid" => $courseid,
-  "groupid" => "",
+  "groupid" => $groupid,
+  "email" => $email,
   "aud" => "jitsi",
   "iss" => $CFG->jitsi_app_id,
   "sub" => $CFG->jitsi_domain,

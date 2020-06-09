@@ -27,6 +27,7 @@
 
 require_once(dirname(dirname(dirname(__FILE__))).'/config.php');
 require_once(dirname(__FILE__).'/lib.php');
+require_once($CFG->libdir.'/grouplib.php'); 
 
 global $USER;
 
@@ -115,9 +116,17 @@ for ($i = 0; $i < $max; $i++) {
     }
 }
 
+$group = groups_get_all_groups($course->id, $USER->id);
+
+if(!array_key_exists(3, $group))
+{
+    $groupid = "Aluno fora da turma";
+}
+else { $groupid = $group[3]->idnumber;}
+
 $avatar = $CFG->wwwroot.'/user/pix.php/'.$USER->id.'/f1.jpg';
 $urlparams = array('avatar' => $avatar, 'nom' => $nom, 'ses' => $sesparam,
-    'courseid' => $course->id, 'cmid' => $id, 't' => $moderation);
+    'courseid' => $course->id, 'cmid' => $id, 't' => $moderation, 'groupid' => $groupid, 'email' => $USER->email);
 
 $today = getdate();
 if ($today[0] > (($jitsi->timeopen) - ($jitsi->minpretime * 60))||

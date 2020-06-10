@@ -9,6 +9,13 @@ Fork of the Moodle integration plugin with Jitsi, aims to generate a list of stu
 Fork do plugin de integração do Moodle com o Jitsi, tem como objetivo gerar uma lista de presença dos alunos em cursos a distância, este fork altera o payload JWT para incluir o id de curso, id de turma 
 e email do aluno.
 
+## Overview
+
+![Overview][img]
+
+[img]: doc/Overview.png "Overview"
+
+## Upstream
 
 [*udima-university/moodle-mod_jitsi - Upstream - Github*](https://github.com/udima-university/moodle-mod_jitsi)
 

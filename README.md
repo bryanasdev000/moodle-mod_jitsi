@@ -21,10 +21,16 @@ e email do aluno.
 
 ## Todo
 
+- [ ] Tratamento do ID de turma (via turma atual)
 - [ ] Code review
 - [ ] Tests
 - [ ] Internationalization
 - [ ] Pull request upstream
+
+
+## Agradecimentos
+
+* [William Felipe Welter](https://github.com/wfelipew) - Code review
 
 # Jitsi-Meet moodle plugin
 This module allows creating **jitsi-meet videoconference** sessions fully integrated in Moodle. These videoconferences will use your Moodle username by displaying your username and avatar in videoconferences.

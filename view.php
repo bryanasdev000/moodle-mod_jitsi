@@ -111,17 +111,12 @@ $optionsseparator = ['.', '-', '_', ''];
 $sesparam = implode($optionsseparator[$CFG->jitsi_separator],$sesparam);
 
 
-$group = groups_get_all_groups($course->id, $USER->id);
-
-if(!array_key_exists(3, $group))
-{
-    $groupid = "Aluno fora da turma";
-}
-else { $groupid = $group[3]->idnumber;}
+$group = groups_get_activity_group($cm);
+$currentgroupname = groups_get_group_name($group);
 
 $avatar = $CFG->wwwroot.'/user/pix.php/'.$USER->id.'/f1.jpg';
 $urlparams = array('avatar' => $avatar, 'nom' => $nom, 'ses' => $sesparam,
-    'courseid' => $course->id, 'cmid' => $id, 't' => $moderation, 'groupid' => $groupid, 'email' => $USER->email);
+    'courseid' => $course->id, 'cmid' => $id, 't' => $moderation, 'groupid' => $currentgroupname, 'email' => $USER->email);
 
 $today = getdate();
 if ($today[0] > (($jitsi->timeopen) - ($jitsi->minpretime * 60))||

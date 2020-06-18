@@ -21,7 +21,7 @@ e email do aluno.
 
 ## Todo
 
-- [ ] Tratamento do ID de turma (via turma atual)
+- [ ] Calendario com GroupID
 - [ ] Code review
 - [ ] Tests
 - [ ] Internationalization

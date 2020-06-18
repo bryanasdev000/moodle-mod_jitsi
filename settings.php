@@ -31,7 +31,7 @@ if ($ADMIN->fulltree) {
     $options = ['username' => get_string('username', 'jitsi'), 'nameandsurname' => get_string('nameandsurname', 'jitsi')];
     $settings->add(new admin_setting_configselect('jitsi_id', get_string('identification', 'jitsi'),
         get_string('identificationex', 'jitsi'), null, $options));
-    $sessionoptions = ['Course Shortname', 'Session ID', 'Session Name'];
+    $sessionoptions = ['Course Shortname', 'Session ID', 'Session Name','Group ID'];
     $sessionoptionsdefault = [0, 1, 2];
 
     $optionsseparator = ['.', '-', '_', 'empty'];

@@ -57,6 +57,9 @@ $PAGE->set_title(format_string($jitsi->name));
 $PAGE->set_heading(format_string($course->fullname));
 echo $OUTPUT->header();
 echo $OUTPUT->heading($jitsi->name);
+
+groups_print_activity_menu($cm, $CFG->wwwroot . '/mod/jitsi/view.php?id=' . $cm->id);
+
 $context = context_module::instance($cm->id);
 if (!has_capability('mod/jitsi:view', $context)) {
     notice(get_string('noviewpermission', 'jitsi'));
@@ -91,30 +94,22 @@ switch ($CFG->jitsi_id) {
 $sessionoptionsparam = ['$course->shortname', '$jitsi->id', '$jitsi->name'];
 $fieldssessionname = $CFG->jitsi_sesionname;
 
-$allowed = explode(',', $fieldssessionname);
-$max = count($allowed);
 
-$sesparam = '';
-$optionsseparator = ['.', '-', '_', ''];
-for ($i = 0; $i < $max; $i++) {
-    if ($i != $max - 1) {
-        if ($allowed[$i] == 0) {
-            $sesparam .= string_sanitize($course->shortname).$optionsseparator[$CFG->jitsi_separator];
-        } else if ($allowed[$i] == 1) {
-            $sesparam .= $jitsi->id.$optionsseparator[$CFG->jitsi_separator];
-        } else if ($allowed[$i] == 2) {
-            $sesparam .= string_sanitize($jitsi->name).$optionsseparator[$CFG->jitsi_separator];
+$allowed = explode(',', $fieldssessionname);
+
+$sesparam = [];
+foreach($allowed as $field_id){
+       switch($field_id)   {
+           case 0 : $sesparam[] = string_sanitize($course->shortname); break;
+           case 1 : $sesparam[] = $jitsi->id ; break;
+           case 2:  $sesparam[] = string_sanitize($jitsi->name); break;
+           case 3:  $sesparam[] = groups_get_activity_group($cm); break;
+           default: break;               
         }
-    } else {
-        if ($allowed[$i] == 0) {
-            $sesparam .= string_sanitize($course->shortname);
-        } else if ($allowed[$i] == 1) {
-            $sesparam .= $jitsi->id;
-        } else if ($allowed[$i] == 2) {
-            $sesparam .= string_sanitize($jitsi->name);
-        }
-    }
 }
+$optionsseparator = ['.', '-', '_', ''];
+$sesparam = implode($optionsseparator[$CFG->jitsi_separator],$sesparam);
+
 
 $group = groups_get_all_groups($course->id, $USER->id);
 

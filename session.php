@@ -111,10 +111,10 @@ if ($CFG->branch < 36) {
     if ($CFG->theme == 'boost') {
         echo "parentNode: document.querySelector('#region-main .card-body'),\n";
     } else {
-        echo "parentNode: document.querySelector('#region-main'),\n";
+        echo "parentNode: document.querySelector('#region-main div'),\n";
     }
 } else {
-    echo "parentNode: document.querySelector('#region-main'),\n";
+    echo "parentNode: document.querySelector('#region-main div'),\n";
 }
 $streamingoption = '';
 
@@ -172,5 +172,22 @@ if ($CFG->jitsi_finishandreturn == 1) {
 
 echo "</script>\n";
 
+if ($teacher) {
+    $buttoncode = <<<EOF
+        <button class="mod_jitsi_record_button" id="mod_jitsi_record_button">
+            <span>
+                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' height='24px' viewBox='0 0 24 24' width='24px' fill='%23000000'%3E%3Cpath d='M0 0h24v24H0V0z' fill='none'/%3E%3Cpath d='M10 8.64L15.27 12 10 15.36V8.64M8 5v14l11-7L8 5z'/%3E%3C/svg%3E" alt="Record icon">
+            </span>
+            <span id="mod_jitsi_record_text">
+                Iniciar gravação
+            </span>
+        </button>
+        <div class="text-danger text-center mt-3" id="mod_jitsi_record_button_error"></div>
+EOF;
+
+    echo $buttoncode;
+}
+
+$PAGE->requires->js_call_amd('mod_jitsi/record_handler', 'init', [urlencode($sessionnorm), "{$USER->firstname} {$USER->lastname}", $CFG->lang, $CFG->jitsi_domain, $CFG->jitsi_recordingdomain]);
 
 echo $OUTPUT->footer();

@@ -83,3 +83,5 @@ $string['watermarklink'] = 'Watermark Link';
 $string['watermarklinkex'] = 'Watermark Link';
 $string['finishandreturn'] = 'Finish and Return';
 $string ['finishandreturnex'] = 'Return to course when finish the session';
+$string['recordingdomain'] = "Recording Domain";
+$string['recordingdomain_description'] = 'Domain Recording Server';

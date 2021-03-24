@@ -1,0 +1,30 @@
+.mod_jitsi_record_button {
+    background: transparent;
+    border: 1px solid rgba(0,0,0,.25);
+    font-size: 1rem;
+    padding: .75rem;
+    outline: none;
+    display: block;
+    margin: 1rem auto 0;
+    transition: all .2s ease;
+}
+
+.mod_jitsi_record_button:focus {
+    outline: none;
+}
+
+.mod_jitsi_record_button:hover {
+    background: rgba(0,0,0,.05);
+}
+
+.mod_jitsi_record_button:disabled {
+    color: rgb(33, 37, 41);
+}
+
+.mod_jitsi_record_button #text {
+    color: rgb(33, 37, 41);
+}
+
+.mod_jitsi_record_button img {
+    opacity: .8;
+}

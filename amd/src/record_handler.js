@@ -36,10 +36,13 @@ define(['jquery'], function ($) {
             checkRecordingStatus();
 
             function post(path, data) {
+
+                let urlFixed = fixUrl(url_recording_service);
+
                 return $.ajax(
                     {
                         type: 'POST',
-                        url: `${url_recording_service}/${path}`,
+                        url: `${urlFixed}/${path}`,
                         dataType: 'json',
                         data: JSON.stringify(data),
                         contentType: 'application/json',
@@ -51,10 +54,13 @@ define(['jquery'], function ($) {
             }
 
             function get(path) {
+
+                let urlFixed = fixUrl(url_recording_service);
+
                 return $.ajax(
                     {
                         type: 'GET',
-                        url: `${url_recording_service}/${path}`,
+                        url: `${urlFixed}/${path}`,
                         cache: false,
                         processData: false
                     }
@@ -64,8 +70,10 @@ define(['jquery'], function ($) {
 
             function record() {
 
+                let urlFixed = fixUrl(url_jitsi);
+
                 const content =  {
-                    'jitsi-meet-url': `${url_jitsi}/${room}`,
+                    'jitsi-meet-url': `${urlFixed}/${room}`,
                     instrutor: instrutor
                 }
                 const request = post('start-recording', content);
@@ -89,7 +97,9 @@ define(['jquery'], function ($) {
 
                 changeButtonState('checking');
 
-                let request = get(`recording-status-by-url?meeting=${url_jitsi}/${room}`);
+                let urlFixed = fixUrl(url_jitsi);
+
+                let request = get(`recording-status-by-url?meeting=${urlFixed}/${room}`);
                 request
                     .done(function (res) {
                        isRecording = true;
@@ -100,7 +110,6 @@ define(['jquery'], function ($) {
                     .fail(function(err) {
                         isRecording = false;
                         changeButtonState('stopped');
-                        window.localStorage.removeItem('mod_jitsi_record_display_id');
                     });
             }
 
@@ -117,7 +126,6 @@ define(['jquery'], function ($) {
                         isRecording = !isRecording;
                         changeButtonState('stopped');
                         currentDisplayId = null;
-                        window.localStorage.removeItem('mod_jitsi_record_display_id');
                     })
                     .fail(function(err) {
                         if (err.status === 400) {
@@ -187,6 +195,14 @@ define(['jquery'], function ($) {
 
             function showError(message) {
                 document.querySelector('#mod_jitsi_record_button_error').innerHTML = message;
+            }
+
+            function fixUrl(url) {
+                if (url.startsWith('http://') || url.startsWith('https://')) {
+                    return url;
+                }
+
+                return `https://${url}`;
             }
 
             $("#mod_jitsi_record_button").on('click', function () {

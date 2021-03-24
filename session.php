@@ -186,8 +186,8 @@ if ($teacher) {
 EOF;
 
     echo $buttoncode;
-}
 
-$PAGE->requires->js_call_amd('mod_jitsi/record_handler', 'init', [urlencode($sessionnorm), "{$USER->firstname} {$USER->lastname}", $CFG->lang, $CFG->jitsi_domain, $CFG->jitsi_recordingdomain]);
+    $PAGE->requires->js_call_amd('mod_jitsi/record_handler', 'init', [urlencode($sessionnorm), "{$USER->firstname} {$USER->lastname}", $CFG->lang, $CFG->jitsi_domain, $CFG->jitsi_recordingdomain]);
+}
 
 echo $OUTPUT->footer();

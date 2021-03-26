@@ -172,7 +172,7 @@ if ($CFG->jitsi_finishandreturn == 1) {
 
 echo "</script>\n";
 
-if ($teacher) {
+if ($teacher && $CFG->jitsi_showrecordingbutton) {
     $buttoncode = <<<EOF
         <button class="mod_jitsi_record_button" id="mod_jitsi_record_button">
             <span>
